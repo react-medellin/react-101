@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Button } from '@react-medellin/components';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+class App extends React.Component {
+    state = {
+        contador: 0
+    };
+
+    iniciarConteo() {
+        setInterval(() => {
+            this.setState({
+                contador: this.state.contador + 1
+            });
+        }, 1000);
+    }
+
+    render() {
+        return(
+            <div>
+                <h1>
+                    Hola React Medellin, {this.props.nombre}
+                </h1>
+                <strong>{this.state.contador}</strong>
+                <br />
+                <Button
+                    onClick={this.iniciarConteo.bind(this)}
+                    type="primary"
+                    size="lg"
+                >
+                    Iniciar Conteo!
+                </Button>
+            </div>
+        );
+    }
 }
 
 export default App;
